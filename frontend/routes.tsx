@@ -1,9 +1,15 @@
-import HelloReactView from 'Frontend/views/helloreact/HelloReactView.js';
-import MainLayout from 'Frontend/views/MainLayout.js';
-import { lazy } from 'react';
-import { createBrowserRouter, IndexRouteObject, NonIndexRouteObject, useMatches } from 'react-router-dom';
+import MainLayout from "Frontend/views/MainLayout.js";
+import { lazy } from "react";
+import {
+  createBrowserRouter,
+  IndexRouteObject,
+  NonIndexRouteObject,
+  useMatches,
+} from "react-router-dom";
+import { Edf_Table } from "./views/Edf_Table";
+import { Dep_Table } from "./views/Dep_Table";
+import { Edi_Dep_Table } from "./views/Edi_Dep_Table";
 
-const AboutView = lazy(async () => import('Frontend/views/about/AboutView.js'));
 export type MenuProps = Readonly<{
   icon?: string;
   title?: string;
@@ -30,11 +36,24 @@ export const useViewMatches = useMatches as () => readonly ViewRouteMatch[];
 
 export const routes: readonly ViewRouteObject[] = [
   {
+    path: "/",
     element: <MainLayout />,
-    handle: { icon: 'null', title: 'Main' },
+    handle: { icon: "null", title: "Menu Principal" },
     children: [
-      { path: '/', element: <HelloReactView />, handle: { icon: 'globe-solid', title: 'Hello React' } },
-      { path: '/about', element: <AboutView />, handle: { icon: 'file', title: 'About' } },
+      {
+        path: "/edificios",
+        element: <Edf_Table />,
+        handle: { icon: "building", title: "Edificios" },
+      },
+      {
+        path: "/dependencias",
+        element: <Dep_Table />,
+        handle: { icon: "building", title: "Dependencias" },
+      },
+      {
+        path: "/EdiDep",
+        element: <Edi_Dep_Table />,
+      },
     ],
   },
 ];

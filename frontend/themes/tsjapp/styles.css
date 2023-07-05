@@ -1,0 +1,29 @@
+.button-container {
+  display: flex;
+  justify-content: space-between;
+}
+.modalCalendario {
+  background: white;
+  border-radius: 10px;
+  color: rgb(51, 51, 51);
+  display: inline;
+  min-width: 400px !important;
+  max-height: 400px;
+  max-width: 400;
+  outline: none;
+  padding: 10px;
+}
+
+.modalUploadImgfondo {
+  background-color: rgba(0, 0, 0, 0.3);
+  bottom: 0;
+  left: 0;
+  right: 0;
+  top: 0;
+  position: fixed;
+}
+.col-center {
+  flex: auto;
+  margin-left: auto;
+  margin-right: auto;
+}
