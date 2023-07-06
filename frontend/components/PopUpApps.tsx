@@ -6,6 +6,7 @@ import { EdificiosEndPoint } from "Frontend/generated/endpoints";
 import { useNavigate } from "react-router-dom";
 
 import Swal from "sweetalert2";
+import { msgOk, msgUpd } from "./MsgSwal";
 
 interface IModalArea {
   openModal: boolean;
@@ -37,21 +38,13 @@ export const PopUpApps: React.FC<IModalArea> = ({
     await EdificiosEndPoint.add(edificio)
       .then(async (res: any) => {
         if (res) {
-          await Swal.fire({
-            title: "Información procesada correctamente",
-            icon: "success",
-            toast: true,
-          });
+          await msgOk();
           closeModal();
           navigate("/edificios");
         }
       })
       .catch(async (erro) => {
-        await Swal.fire({
-          title: "El Edificio ya se encuentra cargado.",
-          icon: "info",
-          toast: true,
-        });
+        await msgOk();
         closeModal();
         navigate("/edificios");
       });
@@ -66,21 +59,13 @@ export const PopUpApps: React.FC<IModalArea> = ({
     EdificiosEndPoint.update(data)
       .then(async (res: any) => {
         if (res) {
-          await Swal.fire({
-            title: "Información Actualizada correctamente",
-            icon: "success",
-            toast: true,
-          });
+          await msgUpd();
           closeModal();
           navigate("/edificios");
         }
       })
       .catch(async (erro) => {
-        await Swal.fire({
-          title: "El Edificio ya se encuentra cargado.",
-          icon: "info",
-          toast: true,
-        });
+        await msgOk();
         closeModal();
         navigate("/edificios");
       });

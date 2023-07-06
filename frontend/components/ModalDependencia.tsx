@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { IDependencia } from "Frontend/interface/TsjApp.Interface";
 import { DependenciasEndPoint } from "Frontend/generated/endpoints";
 import Swal from "sweetalert2";
-import { msgOk } from "./MsgSwal";
+import { msgOk, msgUpd } from "./MsgSwal";
 
 interface IModalArea {
   openModal: boolean;
@@ -55,9 +55,18 @@ export const ModalDependencia: React.FC<IModalArea> = ({
       nombre: dependencia.nombre,
       edificio: { id: id_edificio },
     };
-    DependenciasEndPoint.update(data).then((res) => {
-      console.log(res);
-    });
+
+    DependenciasEndPoint.update(data)
+      .then(async (res) => {
+        await msgUpd();
+        closeModal();
+        navigate("/edificios");
+      })
+      .catch(async (err) => {
+        await msgUpd();
+        closeModal();
+        navigate("/edificios");
+      });
   };
   return (
     <Modal

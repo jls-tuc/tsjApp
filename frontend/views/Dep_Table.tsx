@@ -11,7 +11,7 @@ import { useLocation } from "react-router-dom";
 export const Dep_Table = () => {
   let location = useLocation();
 
-  const [tituloMenu, setTituloMenu] = useState<string>("ABM de Dependencias");
+  const [tituloMenu, setTituloMenu] = useState<string>("Dependencias Creadas");
   const [dataDepEdi, setDataDepEdi] = useState<any>([]);
 
   const dataTabla = async () => {
